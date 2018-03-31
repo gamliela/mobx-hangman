@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import Victory from "./Victory";
+import Defeat from "./Defeat";
+import GuessForm from "./GuessForm";
 
 class Hangman extends Component {
   constructor(props) {
@@ -14,12 +17,6 @@ class Hangman extends Component {
   get hint() {
     const {secretLetters, usedLetters} = this.state;
     return secretLetters.map(letter => usedLetters.includes(letter) ? letter : "*");
-  }
-
-  onSubmitLetter(e) {
-    e.preventDefault();
-    this.updateGameState(this.input.value);
-    this.input.value = "";
   }
 
   updateGameState(letter) {
@@ -55,24 +52,23 @@ class Hangman extends Component {
     return this.state.secretLetters.includes(letter);
   }
 
+  get isWon() {
+    return this.state.secretLetters.every(this.isLetterUsed.bind(this));
+  }
+
+  get isLost() {
+    return this.state.guessesLeft <= 0;
+  }
+
   render() {
-    const {guessesLeft, feedbackMessage, usedLetters} = this.state;
-    return (
-      <div>
-        <h1>Take a guess!</h1>
-        <h4>{guessesLeft} guesses left</h4>
-        <h2>{this.hint}</h2>
-        <form onSubmit={this.onSubmitLetter.bind(this)}>
-          <label>
-            Please enter one letter:
-            <input type="text" ref={input => this.input = input}/>
-            <input type="submit" value="guess!"/>
-          </label>
-        </form>
-        <h2>{feedbackMessage}</h2>
-        <p>Used letters: [{usedLetters.join()}]</p>
-      </div>
-    )
+    if (this.isWon)
+      return <Victory/>;
+    else if (this.isLost)
+      return <Defeat/>;
+    else
+      return <GuessForm guessesLeft={this.state.guessesLeft} usedLetters={this.state.usedLetters}
+                        feedbackMessage={this.state.feedbackMessage} updateGameState={this.updateGameState.bind(this)}
+                        hint={this.hint}/>
   }
 }
 
