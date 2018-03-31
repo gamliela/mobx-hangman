@@ -1,4 +1,4 @@
-import {extendObservable} from "mobx";
+import {computed, decorate, extendObservable} from "mobx";
 
 class HangmanModel {
   constructor(secretWord, numGuesses) {
@@ -6,7 +6,8 @@ class HangmanModel {
       secretLetters: secretWord.split(""),
       guessesLeft: numGuesses,
       usedLetters: [],
-      feedbackMessage: ""
+      feedbackMessage: "",
+      totalGuesses: 0
     });
   }
 
@@ -16,6 +17,7 @@ class HangmanModel {
   }
 
   updateGameState(letter) {
+    this.totalGuesses++;
     this.updateFeedbackMessage(letter);
     this.updateGuessesLeft(letter);
     this.updateUsedLetters(letter);

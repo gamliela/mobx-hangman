@@ -10,11 +10,11 @@ class GuessForm extends Component {
   }
 
   render() {
-    const {guessesLeft, feedbackMessage, usedLetters, hint} = this.props.hangmanModel;
+    const {guessesLeft, feedbackMessage, usedLetters, hint, totalGuesses} = this.props.hangmanModel;
     return (
       <div>
         <h1>Take a guess!</h1>
-        <h4>{guessesLeft} guesses left</h4>
+        <h4>{guessesLeft} guesses left, {totalGuesses} guesses taken</h4>
         <h2>{hint}</h2>
         <form onSubmit={this.onSubmitLetter.bind(this)}>
           <label>
