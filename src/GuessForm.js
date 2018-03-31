@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
+import {observer} from "mobx-react";
 
 class GuessForm extends Component {
 
   onSubmitLetter(e) {
     e.preventDefault();
-    this.props.updateGameState(this.input.value);
+    this.props.hangmanModel.updateGameState(this.input.value);
     this.input.value = "";
   }
 
   render() {
-    const {guessesLeft, feedbackMessage, usedLetters, hint} = this.props;
+    const {guessesLeft, feedbackMessage, usedLetters, hint} = this.props.hangmanModel;
     return (
       <div>
         <h1>Take a guess!</h1>
@@ -29,4 +30,4 @@ class GuessForm extends Component {
   }
 }
 
-export default GuessForm;
+export default observer(GuessForm);
