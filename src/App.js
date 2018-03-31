@@ -11,11 +11,21 @@ const Greeting = ({name}) => (
 );
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      enabled: true
+    };
+  }
+
+  onUpdate = (event) => this.setState({enabled: event.target.checked});
+
   render() {
     return (
       <div className="App">
         <Greeting name={'Hangman'}/>
-        <Hangman secretWord="powershop" numGuesses={5}/>
+        <input type="checkbox" checked={this.state.enabled} onChange={this.onUpdate}/>Enabled
+        {this.state.enabled && <Hangman/>}
       </div>
     );
   }
