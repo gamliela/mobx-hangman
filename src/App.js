@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Hangman from "./Hangman";
 
 const Greeting = ({name}) => (
   <header className="App-header">
@@ -14,6 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <Greeting name={'Hangman'}/>
+        <Hangman secretWord="powershop" numGuesses={5}/>
       </div>
     );
   }
