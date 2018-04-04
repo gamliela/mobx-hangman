@@ -12,6 +12,7 @@ class HangmanModel {
   }
 
   get hint() {
+    alert("hint!");
     const {secretLetters, usedLetters} = this;
     return secretLetters.map(letter => usedLetters.includes(letter) ? letter : "*");
   }
@@ -58,5 +59,9 @@ class HangmanModel {
     return this.guessesLeft <= 0;
   }
 }
+
+decorate(HangmanModel, {
+  hint: computed
+});
 
 export default HangmanModel;
