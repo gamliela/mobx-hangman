@@ -1,3 +1,7 @@
+// Victory.js
+
 import React from 'react';
 
-export default () => <h1>Victory!</h1>
+const Victory = <h1>Victory!</h1>;
+
+export default Victory;

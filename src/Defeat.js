@@ -1,3 +1,7 @@
+// Defeat.js
+
 import React from 'react';
 
-export default () => <h1>Defeat!</h1>
+const Defeat = <h1>Defeat!</h1>;
+
+export default Defeat;

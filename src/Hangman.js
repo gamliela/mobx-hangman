@@ -1,3 +1,5 @@
+// Hangman.js
+
 import React, {Component} from 'react';
 import Victory from "./Victory";
 import Defeat from "./Defeat";
