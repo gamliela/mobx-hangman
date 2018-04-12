@@ -1,3 +1,5 @@
+// HangmanModel.js
+
 import {computed, decorate, extendObservable} from "mobx";
 
 class HangmanModel {
